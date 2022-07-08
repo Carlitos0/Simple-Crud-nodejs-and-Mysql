@@ -2,8 +2,9 @@ const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
 const mysql = require("mysql");
+const flash = require("connect-flash");
+const session = require("express-session");
 const myconnection = require("express-myconnection");
-const { urlencoded } = require("express");
 
 // Initialization
 const app = express();
@@ -24,7 +25,19 @@ app.use(myconnection(mysql, {
     port:3306,
     database: "nodejs_crud_mysql"
 },"single"));
+app.use(session({
+    secret:"secret",
+    resave:true,
+    saveUninitialized:true
+}));
+app.use(flash());
 
+// Global Variables
+app.use((req,res,next)=>{
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    next();
+})
 
 // Routes
 app.use(require("./routes/developer.routes"));

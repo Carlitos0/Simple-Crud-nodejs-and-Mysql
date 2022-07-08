@@ -25,10 +25,13 @@ developerContr.saveDeveloper = (req,res)=>{
             console.log(err);
         }
         conn.query("INSERT INTO developer set ?",[data],(err,developers)=>{
-            if(err){
+            if(err || !data){
                 console.log("No se pudo agregar por el sgt error: "+err)
+                req.flash("error_msg","No se pudo agregar correctamente el registro, verifique todo los registros");
+                res.redirect("/");
             }
             else{
+                req.flash("success_msg","Developer added Successfully");
                 res.redirect("/");
             }
         });
@@ -42,7 +45,12 @@ developerContr.deleteDeveloper = (req,res)=>{
             res.render("developer");
         }
         conn.query("DELETE FROM developer WHERE id=?",[req.params.id],(err,rows)=>{
+            if(err){
+                req.flash("error_msg","There is an error here");
+            }else{
+            req.flash("success_msg","Developer deleted Successfully");
             res.redirect("/");
+            }
         });
     });
 };
@@ -68,9 +76,15 @@ developerContr.edit = (req,res)=>{
     const { id } = req.params;
     const newDeveloper = req.body;
     req.getConnection((err,conn)=>{
-        conn.query("UPDATE developer SET ? WHERE id = ?",[newDeveloper,id],(err,rows)=>{
-            res.redirect("/");
-        });
+        if(err){
+            req.flash("error_msg","There is an error here");
+        }
+        else{
+            req.flash("success_msg","Developer updated Successfully");
+            conn.query("UPDATE developer SET ? WHERE id = ?",[newDeveloper,id],(err,rows)=>{
+                res.redirect("/");
+            });
+        }
     });
 };
 
