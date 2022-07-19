@@ -1,0 +1,85 @@
+<%- include ("../partials/header") %>
+
+<h1 class="text-center mt-5">Notas</h1>
+
+
+<div class="container">
+    <% if (success_msg != "") { %>
+        <%- include ("../partials/messages") %>
+    <% } %>
+</div>
+
+<div class="container">
+    <div class="row mt-5 ">
+        <div class="col-lg-5 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/notas/add" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="idAlumno" placeholder="Alumno" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="idCurso" placeholder="Curso" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="idAula" placeholder="Aula" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="idDocente" placeholder="Docente" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="practicas" placeholder="Nota Practica" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="parcial" placeholder="Nota Parcial" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="final" placeholder="Nota Final" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Save Nota</button> 
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <table class="table table-bordered table-hover table-dark table-responsive-md">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Alumno</th>
+                        <th>Curso</th>
+                        <th>Aula</th>
+                        <th>Docente</th>
+                        <th>Nota Practica</th>
+                        <th>Nota Parcial</th>
+                        <th>Nota Final</th>
+                        <th class="text-center">Control</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach((notas) =>{ %>
+                        <tr>
+                            <td><%= notas.idNota %></td>
+                            <td><%= notas.idAlumno %></td>
+                            <td><%= notas.idAula %></td>
+                            <td><%= notas.idCurso %></td>
+                            <td><%= notas.idDocente %></td>
+                            <td><%= notas.practicas %></td>
+                            <td><%= notas.parcial %></td>
+                            <td><%= notas.final %></td>
+                            <td class="d-flex justify-content-around">
+                                <a href="/notas/delete/<%= notas.idNota %>" class="btn btn-danger mr-1">Delete</a>
+                                <a href="/notas/edit/<%= notas.idNota %>" class="btn btn-warning">Update</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div> 
+
+    </div>
+</div>
+
+<!-- <%- include ("../partials/footer") %> -->
+    
+

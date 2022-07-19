@@ -1,4 +1,4 @@
--- Creando Bd
+/* -- Creando Bd
 CREATE DATABASE nodejs-crud-mysql;
 
 USE nodejs-crud-mysql;
@@ -15,4 +15,4 @@ CREATE TABLE developer{
 
 SHOW TABLES;
 
-DESCRIBE developer;
+DESCRIBE developer; */

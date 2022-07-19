@@ -1,0 +1,43 @@
+<%- include ("../partials/header") %>
+<!-- 
+<div class="container">
+    <% if (success_msg) { %>
+        <%- include ("../partials/messages") %>
+    <% } %>
+</div> -->
+
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <form action="/notas/edit/<%= nota.idNota %>" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="idAlumno" value="<%= nota.idAlumno %>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="idCurso" value="<%= nota.idCurso %>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="idAula" value="<%= nota.idAula %>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="idDocente" value="<%= nota.idDocente %>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="practicas" value="<%= nota.practicas %>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="parcial" value="<%= nota.parcial %>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="final" value="<%= nota.final %>" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Edit Nota</button> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include ("../partials/footer") %>

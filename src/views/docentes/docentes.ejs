@@ -1,0 +1,73 @@
+<%- include ("../partials/header") %>
+
+<h1 class="text-center mt-5">Docentes</h1>
+
+
+<div class="container">
+    <% if (success_msg != "") { %>
+        <%- include ("../partials/messages") %>
+    <% } %>
+</div>
+
+<div class="container">
+    <div class="row mt-5 ">
+        <div class="col-lg-5 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/docentes/add" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="idDocente" placeholder="Codigo" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="nombres" placeholder="Nombres" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="apellidos" placeholder="Apellidos" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="correo" placeholder="Correo" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="telefono" placeholder="Telefono" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Save Docente</button> 
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <table class="table table-bordered table-hover table-dark table-responsive-md">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Coreo</th>
+                        <th>Telefono</th>
+                        <th class="text-center">Control</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach((docente) =>{ %>
+                        <tr>
+                            <td><%= docente.idDocente %></td>
+                            <td><%= docente.nombres %></td>
+                            <td><%= docente.apellidos %></td>
+                            <td><%= docente.correo %></td>
+                            <td><%= docente.telefono %></td>
+                            <td class="d-flex justify-content-around">
+                                <a href="/docentes/delete/<%= docente.idDocente %>" class="btn btn-danger mr-1">Delete</a>
+                                <a href="/docentes/edit/<%= docente.idDocente %>" class="btn btn-warning">Update</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div> 
+
+    </div>
+</div>
+
+<%- include ("../partials/footer") %>
+    
+

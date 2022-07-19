@@ -1,0 +1,31 @@
+<%- include ("../partials/header") %>
+<!-- 
+<div class="container">
+    <% if (success_msg) { %>
+        <%- include ("../partials/messages") %>
+    <% } %>
+</div> -->
+
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <form action="/aulas/edit/<%= aula.idAula %>" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="idAula" value="<%= aula.idAula %>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="aula" value="<%= aula.aula %>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="aforo" value="<%= aula.aforo %>" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Edit Aula</button> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include ("../partials/footer") %>

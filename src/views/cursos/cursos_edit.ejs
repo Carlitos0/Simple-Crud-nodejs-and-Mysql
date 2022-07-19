@@ -1,0 +1,34 @@
+<%- include ("../partials/header") %>
+<!-- 
+<div class="container">
+    <% if (success_msg) { %>
+        <%- include ("../partials/messages") %>
+    <% } %>
+</div> -->
+
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <form action="/cursos/edit/<%= curso.idCurso %>" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="idCurso" value="<%= curso.idCurso %>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="curso" value="<%= curso.curso %>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" name="creditos" value="<%= curso.creditos %>" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="preRequisitos" value="<%= curso.preRequisitos %>" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">Edit Curso</button> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include ("../partials/footer") %>

@@ -1,0 +1,63 @@
+<%- include ("../partials/header") %>
+
+<h1 class="text-center mt-5">Aulas</h1>
+
+
+<div class="container">
+    <% if (success_msg != "") { %>
+        <%- include ("../partials/messages") %>
+    <% } %>
+</div>
+
+<div class="container">
+    <div class="row mt-5 ">
+        <div class="col-lg-5 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/aulas/add" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="idAula" placeholder="Codigo" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="aula" placeholder="Aula" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="aforo" placeholder="Aforo" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">Save Aula</button> 
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <table class="table table-bordered table-hover table-dark table-responsive-md">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Aula</th>
+                        <th>Aforo</th>
+                        <th class="text-center">Control</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach((aula) =>{ %>
+                        <tr>
+                            <td><%= aula.idAula %></td>
+                            <td><%= aula.aula %></td>
+                            <td><%= aula.aforo %></td>
+                            <td class="d-flex justify-content-around">
+                                <a href="/aulas/delete/<%= aula.idAula %>" class="btn btn-danger mr-1">Delete</a>
+                                <a href="/aulas/edit/<%= aula.idAula %>" class="btn btn-warning">Update</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div> 
+
+    </div>
+</div>
+
+<%- include ("../partials/footer") %>
+    
+

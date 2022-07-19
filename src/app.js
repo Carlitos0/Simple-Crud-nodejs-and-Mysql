@@ -23,7 +23,7 @@ app.use(myconnection(mysql, {
     user:"root",
     password:"",
     port:3306,
-    database: "nodejs_crud_mysql"
+    database: "db_sistemas_notas"
 },"single"));
 app.use(session({
     secret:"secret",
@@ -40,7 +40,12 @@ app.use((req,res,next)=>{
 })
 
 // Routes
-app.use(require("./routes/developer.routes"));
+app.use(require("./routes/index.routes"));
+app.use(require("./routes/alumnos.routes"));
+app.use(require("./routes/cursos.routes"));
+app.use(require("./routes/aulas.routes"));
+app.use(require("./routes/docentes.routes"));
+app.use(require("./routes/notas.routes"));
 
 // Static Files
 app.use(express.static(path.join(__dirname,"public")));
